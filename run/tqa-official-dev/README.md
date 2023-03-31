@@ -6,6 +6,10 @@ DATA_PREFIX="tqa-official-dev/emag_"
 # OUTPUT_DIR is the directory of trained checkpoints
 ```
 
+### Checkpoint
+
+Checkpoint of the following results: [Google Drive link](https://drive.google.com/file/d/17_YSu0XxeYFpzxOz7-ayFHqviJiHzClO/view?usp=sharing)
+
 ### Free-Form Generation
 
 ```bash
