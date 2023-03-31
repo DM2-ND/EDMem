@@ -2,7 +2,7 @@
 
 This is the repository for EDMem, a unified encoder-decoder framework with entity memory on entity-intensive tasks. It is a closed-book model augmented with entity knowledge which is pretrained on Wikipedia documents. It is also equipped with entity-aware decoding methods for entity generation. In open-domain QA and generation experiments, EDMem outperforms previous closed-book models like fine-tuned encoder-decoder models (e.g., BART) and memory-based auto-encoder models (e.g., EaE). For more details, please refer to our paper [*"A Unified Encoder-Decoder Framework with Entity Memory"*](https://arxiv.org/pdf/2210.03273.pdf) in EMNLP 2022.
 
-![EDMem Model](figures/model.jpg)
+<center><img src="figures/model.jpg" alt="EDMem model" width="512" height="378"></center>
 
 This repository has the following contents:
 
@@ -14,7 +14,7 @@ This repository has the following contents:
 
 If you find our work useful, please kindly cite our paper:
 ```
-@inproceedings{DBLP:conf/emnlp/Zhang00022,
+@inproceedings{EDMem,
   author    = {Zhihan Zhang and
                Wenhao Yu and
                Chenguang Zhu and
