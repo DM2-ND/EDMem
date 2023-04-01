@@ -46,6 +46,8 @@ predict_args="
 predict_cmd="python -m torch.distributed.launch --nproc_per_node=${GPUS} src/run_QA.py ${predict_args}"
 ```
 
+This will lead to an EM of 43.31, with entity answers EM 49.44 and non-entity answers EM 10.10
+
 ### Dynamic Entity Linking
 
 ```bash
