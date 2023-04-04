@@ -2,13 +2,59 @@
 
 ```bash
 INPUT_DIR="data"
-DATA_PREFIX="tqa-official-dev/emag_"
+DATA_PREFIX="tqa-official-dev/edmem_"
 # OUTPUT_DIR is the directory of trained checkpoints
+```
+
+### Fine-tuning
+
+```bash
+SEED=3518
+CKPT_NAME="tqa-greedy-attn-upper_batch256-wait30-warmup0.05-lr1e-5-el1.0-es1.0-dropout0.1-eval300-ckpt770k-ssm0.5-mlm0.3"
+PRETRAIN_DIR="scratch-attn_upper-gpu8-step1m-warmup0.1-batch2048-lr1e-4-norm0.1-ssm0.5-mlm0.3-el1.0/checkpoint-770000"
+
+train_args="
+    --data_dir ${INPUT_DIR}/openqa
+    --id2entity_file ${INPUT_DIR}/wikipedia/entid2entityitemid_1M.json
+    --id2entitytokens_file ${INPUT_DIR}/wikipedia/entity_tokens_1m.json
+    --task tqa
+    --datafile_prefix ${DATA_PREFIX}
+    --do_train
+    --output_dir ${OUTPUT_DIR}/${CKPT_NAME}/${SEED}
+    --model_name facebook/bart-large
+    --pretrain_ckpt ${OUTPUT_DIR}/${PRETRAIN_DIR}
+    --entity_embed_size 256
+    --dropout 0.1
+    --elloss_weight 1.0
+    --entity_token_weight 1.0
+    --lower_decoder_attn upper_encoder
+    --inference_nearest_k_entity 100
+    --generate_target answer
+    --max_input_length 50
+    --max_output_length 20
+    --num_beams 1
+    --do_sample False
+    --no_repeat_ngram_size 3
+    --add_another_bos True
+    --train_batch_size 32
+    --predict_batch_size 32
+    --learning_rate 1e-5
+    --weight_decay 0.01
+    --max_grad_norm 0.1
+    --gradient_accumulation_steps 1
+    --num_train_epochs 300
+    --warmup_ratio 0.05
+    --wait_step 30
+    --eval_period 300
+    --seed ${SEED}
+"
+
+train_cmd="python -m torch.distributed.launch --nproc_per_node=${GPUS} src/run_QA.py ${train_args}"
 ```
 
 ### Checkpoint
 
-Checkpoint of the following results: [Google Drive link](https://drive.google.com/file/d/17_YSu0XxeYFpzxOz7-ayFHqviJiHzClO/view?usp=sharing)
+Fine-tuned checkpoint: [Google Drive link](https://drive.google.com/file/d/17_YSu0XxeYFpzxOz7-ayFHqviJiHzClO/view?usp=sharing)
 
 ### Free-Form Generation
 
