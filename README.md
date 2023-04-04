@@ -10,6 +10,9 @@ This repository has the following contents:
 - `src/`: the source code of training the model (updating...)
 - `run/`: instructions and scripts of running the model (updating...)
 
+### Pretrained Model
+Checkpoints can be found in this [Google Drive Link](https://drive.google.com/file/d/1ne5zXbs61e3SHEPauBLpLKx0bfMwwEA7/view?usp=sharing).
+
 ### Citation
 
 If you find our work useful, please kindly cite our paper:
