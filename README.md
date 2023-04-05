@@ -10,6 +10,16 @@ This repository has the following contents:
 - `src/`: the source code of training the model (updating...)
 - `run/`: instructions and scripts of running the model (updating...)
 
+### Environment
+
+Via `pip`:
+```bash
+pip install torch==1.8.0+cu111 torchvision==0.9.0+cu111 torchaudio==0.8.0 -f https://download.pytorch.org/whl/torch_stable.html
+pip install transformers==4.15.0 mpi4py==3.0.3 nltk==3.6.1 numpy==1.21.5 spacy==3.0.5 tqdm rouge
+```
+
+Via docker: Look for `zhihz0535/emag-torch1.8-transformers4.15:latest` on Docker Hub.
+
 ### Pretrained Model
 Checkpoints can be found in this [Google Drive Link](https://drive.google.com/file/d/1ne5zXbs61e3SHEPauBLpLKx0bfMwwEA7/view?usp=sharing).
 
