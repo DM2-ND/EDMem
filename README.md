@@ -9,6 +9,7 @@ This repository has the following contents:
 - `data/`: the datasets used to fine-tune EDMem (updating...)
 - `src/`: the source code of training the model (updating...)
 - `run/`: instructions and scripts of running the model (updating...)
+- `evaluation/`: evaluation scripts
 
 ### Environment
 
