@@ -51,6 +51,7 @@ train_args="
 
 train_cmd="python -m torch.distributed.launch --nproc_per_node=${GPUS} src/run_QA.py ${train_args}"
 ```
+P.S. This is run on 8x V100 GPUs. So the effective batch size is 256. Hyper-parameter search is mainly conducted on `learning_rate`, `elloss_weight` and `dropout`.
 
 ### Checkpoint
 
