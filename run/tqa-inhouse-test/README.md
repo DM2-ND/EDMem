@@ -118,7 +118,7 @@ predict_args="
     --lower_decoder_attn upper_encoder
     --inference_nearest_k_entity 100
     --generate_target answer
-    --test_entity_trie ${INPUT_DIR}/prefix_trie/tqa/top1_entity_trie_each_instance_inhouse_454.pkl
+    --test_entity_trie ${INPUT_DIR}/prefix_trie/tqa/tqa-inhouse-test_top1_entity_trie.pkl
     --trie_for_each_instance True
     --entity_copy 1
     --rescale_logits none
@@ -160,7 +160,7 @@ predict_args="
     --lower_decoder_attn upper_encoder
     --inference_nearest_k_entity 100
     --generate_target answer
-    --test_entity_trie ${INPUT_DIR}/prefix_trie/tqa/top1_entity_trie_each_instance_inhouse_454.pkl
+    --test_entity_trie ${INPUT_DIR}/prefix_trie/tqa/tqa-inhouse-test_top1_entity_trie.pkl
     --trie_for_each_instance True
     --max_input_length 50
     --max_output_length 20
