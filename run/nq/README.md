@@ -184,8 +184,8 @@ This will lead to an EM of 29.94, with entity answers EM 37.11 and non-entity an
 ```bash
 eval_args="
     -pred ${OUTPUT_DIR}/${CKPT_NAME}/${SEED}/${SAVE_PREFIX}predictions.json
-    -gold ${INPUT_DIR}/openqa/${TASK}/${DATA_PREFIX}${TASK}-test.jsonl
-    -ans_link ${INPUT_DIR}/openqa/${TASK}/entity_linking/sling_invocab-test.json
+    -gold ${INPUT_DIR}/openqa/nq/${DATA_PREFIX}nq-test.jsonl
+    -ans_link ${INPUT_DIR}/openqa/nq/entity_linking/sling_invocab-test.json
     -entity_vocab ${INPUT_DIR}/wikipedia/entity_1m.json
 "
 
