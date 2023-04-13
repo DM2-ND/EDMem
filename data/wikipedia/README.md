@@ -1,0 +1,3 @@
+# Wikipedia Entities
+
+As we mentioned in our paper, the entity vocabulary used in EDMem is collected from Wikipedia, and each entity corresponds to a Wiki page. `entid` is the index of an entity in our entity memory, from 10 to 1000010. `itemid` is the index of an entity in the Wikipedia dump. *mentions* are aliases or possible surface names that may appear in Wikipedia documents in reference to the entity.
