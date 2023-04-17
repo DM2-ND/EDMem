@@ -9,6 +9,7 @@ DATA_PREFIX="wq/edmem_"
 ### Fine-tuning
 
 ```bash
+GPUS=8
 SEED=3518
 CKPT_NAME="wq-greedy-attn-upper_batch128-wait30-warmup0.05-lr5e-6-el0.5-es1.0-dropout0.1-eval50-TQAinit"
 # When training on NQ, we loaded the checkpoint from TQA official-dev fine-tuning

@@ -9,6 +9,7 @@ DATA_PREFIX="tqa-inhouse-test/edmem_"
 ### Fine-tuning
 
 ```bash
+GPUS=8
 SEED=3518
 CKPT_NAME="tqa-inhouse-test-greedy-attn-upper_batch256-wait30-warmup0.05-lr1e-5-el1.0-es1.0-dropout0.1-eval300-ckpt770k-ssm0.5-mlm0.3"
 PRETRAIN_DIR="scratch-attn_upper-gpu8-step1m-warmup0.1-batch2048-lr1e-4-norm0.1-ssm0.5-mlm0.3-el1.0/checkpoint-770000"
