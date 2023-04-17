@@ -185,16 +185,22 @@ def get_creak_accuracy(dataid2predict, dataid2target):
 
 
 def remove_creak_prefix(dataid2target):
-    for data_id, target in dataid2target.items():
-        if target.startswith("This is true because") or target.startswith("this is true because"):
-            prefix_length = len("This is true because")
-            target = target[prefix_length:].strip()
-            dataid2target[data_id] = target
-        elif target.startswith("This is false because") or target.startswith("this is false because"):
-            prefix_length = len("This is false because")
-            target = target[prefix_length:].strip()
-            dataid2target[data_id] = target
-        else:
-            raise ValueError(f"Invalid prefix of the sentence: {target}")
+    for data_id, target_list in dataid2target.items():
+        revised_target_list = []
+
+        for target in target_list:
+            if target.startswith("This is true because") or target.startswith("this is true because"):
+                prefix_length = len("This is true because")
+                target = target[prefix_length:].strip()
+
+            elif target.startswith("This is false because") or target.startswith("this is false because"):
+                prefix_length = len("This is false because")
+                target = target[prefix_length:].strip()
+            else:
+                raise ValueError(f"Invalid prefix of the sentence: {target}")
+
+            revised_target_list.append(target)
+
+        dataid2target[data_id] = revised_target_list
 
     return dataid2target
