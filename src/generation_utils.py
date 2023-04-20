@@ -72,6 +72,13 @@ def f1_score(prediction, ground_truth):
     return f1
 
 
+def get_f1_score(prediction, ground_truth):
+    if isinstance(ground_truth, str):
+        return f1_score(prediction, ground_truth)
+    elif isinstance(ground_truth, list):
+        return max([f1_score(prediction, gt) for gt in ground_truth])
+
+
 def load_dataset(data_dir: str, task_name: str, datafile_prefix: str):
     task_dir = os.path.join(data_dir, task_name)
     assert os.path.isdir(task_dir), f"Directory {task_dir} does not exist!"

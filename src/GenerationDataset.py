@@ -17,7 +17,7 @@ import logging
 from copy import deepcopy
 from WikiDataset import WikiDataset
 from generation_utils import (
-    f1_score,
+    get_f1_score,
     get_rouge,
     get_creak_accuracy,
     remove_creak_prefix
@@ -224,7 +224,7 @@ class GenerationDataset(torch.utils.data.Dataset):
         if self.metric == "F1":
             scores = []
             for did in range(len(data_ids)):
-                scores.append(f1_score(predictions[did], self.dataid2target[data_ids[did]]))
+                scores.append(get_f1_score(predictions[did], self.dataid2target[data_ids[did]]))
             return scores
 
         elif self.metric == "Rouge":
