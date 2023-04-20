@@ -2,7 +2,7 @@
 
 ```bash
 INPUT_DIR="data"
-DATA_PREFIX="creak/edmem_"
+DATA_PREFIX="edmem_"
 # OUTPUT_DIR is the directory of trained checkpoints
 ```
 
