@@ -415,21 +415,22 @@ def inference(args, model, dev_data, data_collator, tokenizer, id2entity, id2ent
         batch = prepare_inputs(batch, model.device)
         batch_size = len(batch["id"])
         # Items in inference batch: id, input_ids, attention_mask, input_entity_link
-        model_output = model.generate(data_ids=batch["id"],
-                                      input_ids=batch["input_ids"],
-                                      attention_mask=batch["attention_mask"],
-                                      decoder_input_ids=batch.get("decoder_input_ids", None),
-                                      decoder_attention_mask=batch.get("decoder_attention_mask", None),
-                                      entity_mask=None,
-                                      num_beams=args.num_beams,
-                                      do_sample=args.do_sample,
-                                      early_stopping=True,
-                                      return_dict_in_generate=True,
-                                      return_topk_entity=args.output_topk_entity,
-                                      prefix_allowed_tokens_fn=prefix_allowed_tokens_fn,
-                                      output_scores=True,
-                                      id2entitytokens=id2entitytokens,
-                                      **kwargs)
+        with torch.no_grad():
+            model_output = model.generate(data_ids=batch["id"],
+                                          input_ids=batch["input_ids"],
+                                          attention_mask=batch["attention_mask"],
+                                          decoder_input_ids=batch.get("decoder_input_ids", None),
+                                          decoder_attention_mask=batch.get("decoder_attention_mask", None),
+                                          entity_mask=None,
+                                          num_beams=args.num_beams,
+                                          do_sample=args.do_sample,
+                                          early_stopping=True,
+                                          return_dict_in_generate=True,
+                                          return_topk_entity=args.output_topk_entity,
+                                          prefix_allowed_tokens_fn=prefix_allowed_tokens_fn,
+                                          output_scores=True,
+                                          id2entitytokens=id2entitytokens,
+                                          **kwargs)
 
         outputs = model_output.sequences
         # print(f"GPU{args.local_rank} Output: ", outputs)

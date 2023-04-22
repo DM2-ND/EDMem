@@ -426,10 +426,11 @@ def entity_linking_inference(args, model, dev_data, data_collator, tokenizer, id
         if entity_mask is not None:
             entity_mask = entity_mask.to(model.device)
         # Items in inference batch: id, input_ids, attention_mask, input_entity_link
-        model_output = model(input_ids=batch["decoder_input_ids"],
-                             attention_mask=batch["decoder_attention_mask"],
-                             entity_mask=entity_mask,
-                             return_dict=True)
+        with torch.no_grad():
+            model_output = model(input_ids=batch["decoder_input_ids"],
+                                 attention_mask=batch["decoder_attention_mask"],
+                                 entity_mask=entity_mask,
+                                 return_dict=True)
 
         # predicted top-k entities for the answer, shape (batch, topk)
         topk_entity = model_output.topk_entity[1]

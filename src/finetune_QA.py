@@ -471,20 +471,21 @@ def inference(args, model, dev_data, data_collator, tokenizer, id2entity, id2ent
             entity_mask = entity_mask.to(model.device)
         batch_size = len(batch["id"])
         # Items in inference batch: id, input_ids, attention_mask, input_entity_link
-        model_output = model.generate(data_ids=batch["id"],
-                                      input_ids=batch["input_ids"],
-                                      attention_mask=batch["attention_mask"],
-                                      decoder_input_ids=batch.get("decoder_input_ids", None),
-                                      decoder_attention_mask=batch.get("decoder_attention_mask", None),
-                                      entity_mask=entity_mask,
-                                      num_beams=args.num_beams,
-                                      do_sample=args.do_sample,
-                                      early_stopping=True,
-                                      return_dict_in_generate=True,
-                                      prefix_allowed_tokens_fn=prefix_allowed_tokens_fn,
-                                      output_scores=True,
-                                      id2entitytokens=id2entitytokens,
-                                      **kwargs)
+        with torch.no_grad():
+            model_output = model.generate(data_ids=batch["id"],
+                                          input_ids=batch["input_ids"],
+                                          attention_mask=batch["attention_mask"],
+                                          decoder_input_ids=batch.get("decoder_input_ids", None),
+                                          decoder_attention_mask=batch.get("decoder_attention_mask", None),
+                                          entity_mask=entity_mask,
+                                          num_beams=args.num_beams,
+                                          do_sample=args.do_sample,
+                                          early_stopping=True,
+                                          return_dict_in_generate=True,
+                                          prefix_allowed_tokens_fn=prefix_allowed_tokens_fn,
+                                          output_scores=True,
+                                          id2entitytokens=id2entitytokens,
+                                          **kwargs)
 
         outputs = model_output.sequences
         # print(f"GPU{args.local_rank} Output: ", outputs)
@@ -574,11 +575,12 @@ def entity_linking_inference(args, model, dev_data, data_collator, tokenizer, id
     for i, batch in enumerate(dev_dataloader):
         batch = prepare_inputs(batch, model.device)
         # Items in inference batch: id, input_ids, attention_mask, input_entity_link
-        model_output = model(input_ids=batch["input_ids"],
-                             attention_mask=batch["attention_mask"],
-                             decoder_input_ids=batch["decoder_input_ids"],
-                             decoder_attention_mask=batch["decoder_attention_mask"],
-                             return_dict=True)
+        with torch.no_grad():
+            model_output = model(input_ids=batch["input_ids"],
+                                 attention_mask=batch["attention_mask"],
+                                 decoder_input_ids=batch["decoder_input_ids"],
+                                 decoder_attention_mask=batch["decoder_attention_mask"],
+                                 return_dict=True)
 
         # predicted top-k entities for the answer, shape (batch, topk)
         topk_entity = model_output.topk_entity[2]
