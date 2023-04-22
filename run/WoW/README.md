@@ -14,6 +14,7 @@ SEED=3518
 CKPT_NAME="wow-batch128-wait30-warmup0.05-lr1e-5-el0.5-es1.0-dropout0.1-eval500"
 PRETRAIN_DIR="scratch-attn_upper-gpu8-step1m-warmup0.1-batch2048-lr1e-4-norm0.1-ssm0.5-mlm0.3-el1.0/checkpoint-1000000"
 
+SAVE_PREFIX="freeform_"
 train_args="
     --data_dir ${INPUT_DIR}/generation
     --id2entity_file ${INPUT_DIR}/wikipedia/entid2entityitemid_1M.json
@@ -48,6 +49,7 @@ train_args="
     --warmup_ratio 0.05
     --wait_step 30
     --eval_period 500
+    --prefix ${SAVE_PREFIX}
     --seed ${SEED}
 "
 

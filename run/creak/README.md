@@ -14,6 +14,7 @@ SEED=3518
 CKPT_NAME="creak-beam5_batch128-wait20-warmup0.05-lr5e-6-el2.0-es1.0-dropout0.1-eval75"
 PRETRAIN_DIR="scratch-attn_upper-gpu8-step1m-warmup0.1-batch2048-lr1e-4-norm0.1-ssm0.5-mlm0.3-el1.0/checkpoint-1000000"
 
+SAVE_PREFIX="freeform_"
 train_args="
     --data_dir ${INPUT_DIR}/generation
     --id2entity_file ${INPUT_DIR}/wikipedia/entid2entityitemid_1M.json
@@ -48,6 +49,7 @@ train_args="
     --warmup_ratio 0.05
     --wait_step 20
     --eval_period 75
+    --prefix ${SAVE_PREFIX}
     --seed ${SEED}
 "
 
