@@ -6,9 +6,9 @@ This is the repository for EDMem, a unified encoder-decoder framework with entit
 
 This repository has the following contents:
 
-- `data/`: the datasets used to fine-tune EDMem (updating...)
-- `src/`: the source code of training the model (updating...)
-- `run/`: instructions and scripts of running the model (updating...)
+- `data/`: the datasets used to fine-tune EDMem
+- `src/`: the source code of training the model
+- `run/`: instructions and scripts of running the model 
 - `evaluation/`: evaluation scripts
 
 ### Environment
@@ -21,7 +21,7 @@ pip install transformers==4.15.0 mpi4py==3.0.3 nltk==3.6.1 numpy==1.21.5 spacy==
 
 Via docker: Look for `zhihz0535/emag-torch1.8-transformers4.15:latest` on Docker Hub.
 
-### Pretrained Model
+### Pre-trained Model on Wikipedia
 Checkpoints can be found in this [Google Drive Link](https://drive.google.com/file/d/1ne5zXbs61e3SHEPauBLpLKx0bfMwwEA7/view?usp=sharing).
 
 ### Citation
