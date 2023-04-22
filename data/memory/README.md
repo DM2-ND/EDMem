@@ -1,0 +1,1 @@
+`get_memory_mask.py`: Generate a mask on a portion of entities in the memory. The memory mask is used for ablation studies (Figure 3 and Figure 4 in the paper). To apply the mask during fine-tuning the model, use the `--entity_mask_file` argument.
