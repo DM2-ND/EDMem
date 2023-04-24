@@ -49,6 +49,7 @@ train_args="
     --warmup_ratio 0.05
     --wait_step 20
     --eval_period 600
+    --prefix ${SAVE_PREFIX}
     --seed ${SEED}
 "
 
